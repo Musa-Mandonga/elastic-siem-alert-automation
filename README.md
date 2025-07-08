@@ -74,3 +74,7 @@ $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest -Uri https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-9.0.3-windows-x86_64.zip -OutFile elastic-agent.zip
 Expand-Archive .\elastic-agent.zip -DestinationPath .
 .\elastic-agent.exe install --url=<elastic-cloud-url> --enrollment-token=<your-token>
+
+📸 Screenshot:
+
+![Step 3 - Elastic Installation Windows Server](docs/Step3_elastic_install_windows.jpg)
