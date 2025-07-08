@@ -80,3 +80,45 @@ Expand-Archive .\elastic-agent.zip -DestinationPath .
 .\elastic-agent.exe install --url=<elastic-cloud-url> --enrollment-token=<your-token>
 
 
+---
+
+### 🛡 Step 4: Integrated Elastic Defend (EDR) for Endpoint Monitoring
+
+To enhance host-level security visibility, I integrated *Elastic Defend* with the Windows EC2 server through the *Elastic Agent Policy*.
+
+Elastic Defend acts as an *Endpoint Detection & Response (EDR)* system, allowing:
+- Real-time detection of malware, ransomware, and exploits
+- Process-level telemetry and file monitoring
+- Response capabilities against endpoint threats
+
+---
+
+### 🧩 Integration Steps:
+
+1. Navigated to *Fleet → Agent Policies* in Elastic Cloud
+2. Selected *Agent policy 1* linked to my enrolled Windows server
+3. Clicked *Add integration* and chose *Elastic Defend*
+4. Selected *Complete EDR (Endpoint Detection & Response)* for full visibility
+5. Named the integration Project1 and applied it to the policy
+6. Confirmed that the policy now contains both:
+   - system-1 (basic telemetry)
+   - Project1 (Elastic Defend v9.1.0)
+
+---
+
+📸 *Screenshots:*
+
+- Add Integration to policy   
+  ![Add Integration to policy 1](docs/step4_Add_integration.jpg)
+
+- Integration Agent selection 
+  ![Select Elastic defend](docs/step4_select_elastic_defend.jpg)
+
+- Configuring Integration as "Project1"  
+  ![Config Integration](docs/step4_integration_name.jpg)
+
+- Integration Role(complete EDR)  
+  ![Select Complete EDR option](docs/step4_select_edr_option.jpg)
+
+- Elastic Defend Successfully added  
+  ![Root Privilege Required](docs/step4_root_privileges.jpg)
