@@ -68,6 +68,10 @@ After connecting to the Windows EC2 instance, I signed up for a *free trial of E
 
 I installed the *Elastic Agent* on the Windows EC2 instance using PowerShell and enrolled it into my Elastic Cloud instance using the secure enrollment token.
 
+📸 Screenshot:
+
+![Step 3 - Elastic Installation Windows Server](docs/Step3_elastic_install_windows.jpg)
+
 #### 📝 Installation Commands:
 ```powershell
 $ProgressPreference = 'SilentlyContinue'
@@ -75,6 +79,4 @@ Invoke-WebRequest -Uri https://artifacts.elastic.co/downloads/beats/elastic-agen
 Expand-Archive .\elastic-agent.zip -DestinationPath .
 .\elastic-agent.exe install --url=<elastic-cloud-url> --enrollment-token=<your-token>
 
-📸 Screenshot:
 
-![Step 3 - Elastic Installation Windows Server](docs/Step3_elastic_install_windows.jpg)
