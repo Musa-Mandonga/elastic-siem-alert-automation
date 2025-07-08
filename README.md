@@ -79,7 +79,7 @@ Invoke-WebRequest -Uri https://artifacts.elastic.co/downloads/beats/elastic-agen
 Expand-Archive .\elastic-agent.zip -DestinationPath .
 .\elastic-agent.exe install --url=<elastic-cloud-url> --enrollment-token=<your-token>
 ---
-
+```
 ### 🛡 Step 4: Integrated Elastic Defend (EDR) for Endpoint Monitoring
 
 To enhance host-level security visibility, I integrated *Elastic Defend* with the Windows EC2 server through the *Elastic Agent Policy*.
