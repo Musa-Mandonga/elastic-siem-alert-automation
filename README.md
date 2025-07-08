@@ -40,7 +40,7 @@ After launching the Windows EC2 instance, I established a *Remote Desktop Connec
 - Simulate endpoint behavior (for Elastic SIEM)
 
 *Connection Info:*
-- RDP IP: 52.27.197.140
+- RDP IP: Public IPv4 address
 - Username: Administrator
 - Password: Decrypted using .pem key from AWS console
 - Instance Type: t3.micro
