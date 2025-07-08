@@ -28,4 +28,4 @@ To simulate a real enterprise environment and generate security logs, I launched
 
 📸 Screenshot:
 
-![Windows EC2 Instance](docs/step1_aws_ec2_windows.jpg)
+(docs/step1_aws_ec2_windows.jpg)
