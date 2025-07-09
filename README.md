@@ -116,7 +116,7 @@ Elastic Defend acts as an *Endpoint Detection & Response (EDR)* system, allowing
   ![Config Integration](docs/step4_integration_name.jpg)
 
 - Integration Role(complete EDR)  
-  ![Select Complete EDR option](docs/step4_select_edr_option.jpg)
+  ![Select Complete EDR option](docs/step4_select_edr_options.jpg)
 
 - Elastic Defend Successfully added  
-  ![Root Privilege Required](docs/step4_root_privileges.jpg)
+  ![Root Privilege Required](docs/step4_integration_added.jpg)
