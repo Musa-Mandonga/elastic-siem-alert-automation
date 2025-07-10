@@ -120,3 +120,47 @@ Elastic Defend acts as an *Endpoint Detection & Response (EDR)* system, allowing
 
 - Elastic Defend Successfully added  
   ![Root Privilege Required](docs/step4_integration_added.jpg)
+
+---
+
+### 🤖 Step 5: Built Workflow Automation in Tines for Alert Summarization & Email Notification
+
+To automate alert response and bring AI into the pipeline, I integrated *Tines* with Elastic SIEM.
+
+#### 🔧 What is Tines?
+Tines is a no-code automation platform used to trigger workflows in response to incoming webhook data — such as alerts from Elastic.
+
+---
+
+### 🧩 What I Did:
+
+1. *Signed up for a free Tines account*
+   - Used Google Sign-In for quick setup.
+2. *Created a new Story (Workflow Automation)* inside the Tines platform
+3. Dragged in the following components:
+   - ✅ Webhook Action: to receive alert data
+   - ✅ AI → Summarize Webhook Data: to interpret and reduce raw alert noise
+   - ✅ Send Email Action: to notify via email with a clean summary
+4. Connected the blocks into a flow:
+   - Webhook → AI → Email
+5. Configured the email action with:
+   - Recipient: mandongamusas097@gmail.com
+   - Sender Name: Musa Mandonga
+
+---
+
+📸 *Screenshots:*
+
+- *Tines Story Overview*  
+  ![Tines Story Overview](docs/step5_tines_story_overview.jpg)
+
+  - *Webhook Configuration*  
+  ![Webhook Config](docs/step5_webhook_config.jpg)
+
+- *AI Summarize Block Setup*  
+  ![AI Summarize](docs/step5_ai_summarize_block.jpg)
+
+- *Send Email Action Setup*  
+  ![Send Email Config](docs/step5_email_config.jpg)
+
+
