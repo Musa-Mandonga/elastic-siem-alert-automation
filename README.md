@@ -189,12 +189,84 @@ Forward detection rule alerts (e.g., "Admin Logged In") from Elastic SIEM to Tyn
 
 3. Clicked *Save & test* to confirm the connection between Elastic and Tynes.
 
+
+### ✅ Step 7: Create and Test Detection Rule to Trigger Alert via Webhook
+
+In this final step, I created a custom *SIEM Detection Rule* in Elastic to simulate a real-world alert and test the full end-to-end flow to Tines and email notifications.
+
 ---
 
-This webhook now forwards alerts from Elastic to Tynes using the following sample JSON payload:
+#### 🛠 Rule Creation Process
 
-```json
-{
-  "rule_name": "{{context.rule.name}}",
-  "description": "{{context.rule.description}}"
-}
+1. *Navigate To:*
+   - Security → Rules → Detection Rules (SIEM) → *Create new rule*
+
+2. *Define Rule*
+   - Rule type: Custom query
+   - Query:  
+     kql
+     event.code: "4672"
+     
+   - Index patterns:
+     auditbeat-*, winlogbeat-*, elastic-cloud-logs-*, etc.
+
+   ![Rule Definition](docs/rule-definition.png)
+
+3. *About Rule*
+   - *Name:* Admin Logged In
+   - *Description:* Monitoring admin logged in sessions
+   - *Severity:* High  
+   - *Risk Score:* 73
+
+   ![Rule About Settings](docs/rule-about.png)
+
+4. *Schedule Rule*
+   - Runs every 5 minutes
+   - Additional look-back time: 1 minute
+
+   ![Rule Schedule Settings](docs/rule-schedule.png)
+
+5. *Actions*
+   - Webhook connector: Project1 (Tines webhook)
+   - Payload:
+     json
+     {
+       "rule_name": "{{context.rule.name}}",
+       "description": "{{context.rule.description}}"
+     }
+     
+
+   ![Rule Actions - Webhook](docs/rule-actions.png)
+
+---
+
+#### 🚨 Alert Result
+
+To simulate a detection, I manually triggered an *admin login event*:
+
+1. Disconnected RDP session from Windows EC2 instance  
+2. Reconnected to the RDP session (generating event.code: 4672)
+
+- The alert was successfully captured in Elastic SIEM under the *"Admin Logged In"* rule.
+
+  ![Elastic Alert Fired](docs/alert-fired.png)
+
+- The alert was forwarded to *Tines, processed by the **AI agent, and a **summarized alert email* was delivered.
+
+  ![Alert Email from Tines AI](docs/alert-email-summary.png)
+
+---
+
+#### 🤖 AI Integration with Tines
+
+The webhook payload from Elastic was received by Tines. An AI action was configured to:
+
+- *Summarize the log* into analyst-friendly text
+- *Generate a suggested action*
+- *Send a formatted email alert* to designated recipients
+
+This closes the full loop from detection → enrichment → notification.
+
+---
+
+🎉 *Test successful*: The system is now capable of real-time threat detection, automated triage via AI, and alerting via email.
