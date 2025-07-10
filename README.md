@@ -5,11 +5,11 @@ A cybersecurity automation project using Elastic SIEM and Tines for alert genera
 
 This project showcases a cybersecurity automation pipeline using *Elastic SIEM* and *Tines*. It demonstrates how device logs are ingested, correlated using detection rules, and how alerts are automated for analyst review and escalation.
 
-> 📺 *Based on Tutorial:* "Try this Cybersecurity A.I Project!!" by Andrew Jones
+> *Based on Tutorial:* "Try this Cybersecurity A.I Project!!" by Andrew Jones
 
 ---
 
-## 📌 Project Objective
+## Project Objective
 
 To build a Security Information and Event Management (SIEM) solution that:
 - Collects logs from devices in a network
@@ -17,7 +17,7 @@ To build a Security Information and Event Management (SIEM) solution that:
 - Sends alerts to analysts via Tines
 - Enables auto-escalation or rule refinement using automation
 
-### 🖥 Step 1: Created Windows Test Server on AWS EC2
+### Step 1: Created Windows Test Server on AWS EC2
 
 To simulate a real enterprise environment and generate security logs, I launched a *Windows Server EC2 instance* on AWS.
 
@@ -26,15 +26,15 @@ To simulate a real enterprise environment and generate security logs, I launched
 - OS: Windows Server
 - Purpose: This endpoint will act as a log source for Elastic SIEM
 
-📸 Screenshot:
+Screenshot:
 
 ![Screenshot of Windows EC2 instance](docs/step1_aws_ec2_windows.jpg)
 
-### 🖥 Step 2: Connected to Windows Server via Remote Desktop (RDP)
+### Step 2: Connected to Windows Server via Remote Desktop (RDP)
 
 After launching the Windows EC2 instance, I established a *Remote Desktop Connection* to configure it as a log source.
 
-🔐 This step allows access to:
+This step allows access to:
 - Install and configure the *Elastic Agent*
 - Monitor local services and security logs
 - Simulate endpoint behavior (for Elastic SIEM)
@@ -46,17 +46,17 @@ After launching the Windows EC2 instance, I established a *Remote Desktop Connec
 - Instance Type: t3.micro
 - Availability Zone: us-west-2b
 
-📸 Screenshot:
+Screenshot:
 
 ![Step 2 - RDP Windows Server](docs/step2_rdp_windows_server.jpg)
 
 ---
 
-### ⚙ Step 3: Set Up Elastic Cloud Security & Installed Elastic Agent
+### Step 3: Set Up Elastic Cloud Security & Installed Elastic Agent
 
 After connecting to the Windows EC2 instance, I signed up for a *free trial of Elastic Cloud* with built-in Security features, which include:
 
-#### 🛡 Elastic Security Capabilities Enabled:
+#### Elastic Security Capabilities Enabled:
 - *Logs* – Collect, search, and analyze security logs from endpoints.
 - *SIEM* – Detect, investigate, and respond to evolving threats.
 - *Endpoint Security* – Protect hosts against malware, ransomware, and exploits via Elastic Agent.
@@ -64,15 +64,15 @@ After connecting to the Windows EC2 instance, I signed up for a *free trial of E
 
 ---
 
-### ✅ Installed Elastic Agent on Windows Server
+### Installed Elastic Agent on Windows Server
 
 I installed the *Elastic Agent* on the Windows EC2 instance using PowerShell and enrolled it into my Elastic Cloud instance using the secure enrollment token.
 
-📸 Screenshot:
+Screenshot:
 
 ![Step 3 - Elastic Installation Windows Server](docs/Step3_elastic_install_windows.jpg)
 
-#### 📝 Installation Commands:
+#### Installation Commands:
 ```powershell
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest -Uri https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-9.0.3-windows-x86_64.zip -OutFile elastic-agent.zip
@@ -80,7 +80,7 @@ Expand-Archive .\elastic-agent.zip -DestinationPath .
 .\elastic-agent.exe install --url=<elastic-cloud-url> --enrollment-token=<your-token>
 ---
 ```
-### 🛡 Step 4: Integrated Elastic Defend (EDR) for Endpoint Monitoring
+### Step 4: Integrated Elastic Defend (EDR) for Endpoint Monitoring
 
 To enhance host-level security visibility, I integrated *Elastic Defend* with the Windows EC2 server through the *Elastic Agent Policy*.
 
@@ -91,7 +91,7 @@ Elastic Defend acts as an *Endpoint Detection & Response (EDR)* system, allowing
 
 ---
 
-### 🧩 Integration Steps:
+### Integration Steps:
 
 1. Navigated to *Fleet → Agent Policies* in Elastic Cloud
 2. Selected *Agent policy 1* linked to my enrolled Windows server
@@ -104,7 +104,7 @@ Elastic Defend acts as an *Endpoint Detection & Response (EDR)* system, allowing
 
 ---
 
-📸 *Screenshots:*
+*Screenshots:*
 
 - Add Integration to policy   
   ![Add Integration to policy 1](docs/step4_Add_integration.jpg)
@@ -123,16 +123,16 @@ Elastic Defend acts as an *Endpoint Detection & Response (EDR)* system, allowing
 
 ---
 
-### 🤖 Step 5: Built Workflow Automation in Tines for Alert Summarization & Email Notification
+### Step 5: Built Workflow Automation in Tines for Alert Summarization & Email Notification
 
 To automate alert response and bring AI into the pipeline, I integrated *Tines* with Elastic SIEM.
 
-#### 🔧 What is Tines?
+#### What is Tines?
 Tines is a no-code automation platform used to trigger workflows in response to incoming webhook data — such as alerts from Elastic.
 
 ---
 
-### 🧩 What I Did:
+### What I Did:
 
 1. *Signed up for a free Tines account*
    - Used Google Sign-In for quick setup.
@@ -149,7 +149,7 @@ Tines is a no-code automation platform used to trigger workflows in response to 
 
 ---
 
-📸 *Screenshots:*
+*Screenshots:*
 
 - *Tines Story Overview*  
   ![Tines Story Overview](docs/step5_tines_story_overview.jpg)
@@ -164,7 +164,7 @@ Tines is a no-code automation platform used to trigger workflows in response to 
   ![Send Email Config](docs/step5_email_config.jpg)
 
 
-### 🔗 Step 6: Connect Elastic to Tines via Webhook
+### Step 6: Connect Elastic to Tines via Webhook
 
 To enable automated alert forwarding from Elastic Security to Tines, I configured a *Webhook connector* in Elastic Stack Management.
 
@@ -173,7 +173,7 @@ Forward detection rule alerts (e.g., "Admin Logged In") from Elastic SIEM to Tyn
 
 ---
 
-#### ✅ Steps Taken:
+#### Steps Taken:
 
 1. Navigated to *Stack Management > Connectors* in the Elastic Cloud dashboard.
 
@@ -190,13 +190,13 @@ Forward detection rule alerts (e.g., "Admin Logged In") from Elastic SIEM to Tyn
 3. Clicked *Save & test* to confirm the connection between Elastic and Tynes.
 
 
-### ✅ Step 7: Create and Test Detection Rule to Trigger Alert via Webhook
+### Step 7: Create and Test Detection Rule to Trigger Alert via Webhook
 
 In this final step, I created a custom *SIEM Detection Rule* in Elastic to simulate a real-world alert and test the full end-to-end flow to Tines and email notifications.
 
 ---
 
-#### 🛠 Rule Creation Process
+#### Rule Creation Process
 
 1. *Navigate To:*
    - Security → Rules → Detection Rules (SIEM) → *Create new rule*
@@ -240,7 +240,7 @@ In this final step, I created a custom *SIEM Detection Rule* in Elastic to simul
 
 ---
 
-#### 🚨 Alert Result
+#### Alert Result
 
 To simulate a detection, I manually triggered an *admin login event*:
 
@@ -257,7 +257,7 @@ To simulate a detection, I manually triggered an *admin login event*:
 
 ---
 
-#### 🤖 AI Integration with Tines
+#### AI Integration with Tines
 
 The webhook payload from Elastic was received by Tines. An AI action was configured to:
 
@@ -269,4 +269,4 @@ This closes the full loop from detection → enrichment → notification.
 
 ---
 
-🎉 *Test successful*: The system is now capable of real-time threat detection, automated triage via AI, and alerting via email.
+*Test successful*: The system is now capable of real-time threat detection, automated triage via AI, and alerting via email.
