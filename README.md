@@ -164,3 +164,37 @@ Tines is a no-code automation platform used to trigger workflows in response to 
   ![Send Email Config](docs/step5_email_config.jpg)
 
 
+### 🔗 Step 6: Connect Elastic to Tines via Webhook
+
+To enable automated alert forwarding from Elastic Security to Tines, I configured a *Webhook connector* in Elastic Stack Management.
+
+*Purpose:*  
+Forward detection rule alerts (e.g., "Admin Logged In") from Elastic SIEM to Tynes for further automation or workflow triggers.
+
+---
+
+#### ✅ Steps Taken:
+
+1. Navigated to *Stack Management > Connectors* in the Elastic Cloud dashboard.
+
+   ![Connectors page in Elastic](docs/elastic-connectors-page.png)
+
+2. Clicked *Create connector* and selected the *Webhook* option:
+   - Gave the connector a name: test-tynes-webhook
+   - Set method to POST
+   - Entered the *Tynes webhook URL*
+   - Selected *None* under authentication
+
+   ![Webhook connector configuration](docs/webhook-connector-settings.png)
+
+3. Clicked *Save & test* to confirm the connection between Elastic and Tynes.
+
+---
+
+This webhook now forwards alerts from Elastic to Tynes using the following sample JSON payload:
+
+```json
+{
+  "rule_name": "{{context.rule.name}}",
+  "description": "{{context.rule.description}}"
+}
